@@ -2,5 +2,8 @@
 
 public class Water : Entity
 {
-    
+    public Water() : base("tileset")
+    {
+        
+    }   
 }
