@@ -22,6 +22,16 @@ public class Entity : Scene
     }
 
     public virtual FloatRect Bounds => sprite.GetGlobalBounds();
+    /*
+    public virtual FloatRect Bounds 
+    {
+        get
+        {
+            sprite.GetGlobalBounds();
+        }
+    }
+     */
+    public virtual bool Solid => false;
 
     public void Create(Scene scene)
     {

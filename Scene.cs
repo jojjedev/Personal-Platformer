@@ -14,12 +14,22 @@ public class Scene
         textures = new Dictionary<string, Texture>();
         entities = new List<Entity>();
     }
+
+    public void Load(string scene)
+    {
+        nextScene = scene;
+    }
+
+    public void Reload()
+    {
+        nextScene = currentScene;
+    }
     public void Spawn(Entity entity)
     {
         entities.Add(entity);
         entity.Create(this);
     }
-
+    
     public Texture LoadTexture(string name)
     {
         if (textures.TryGetValue(name, out Texture found))

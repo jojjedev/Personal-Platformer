@@ -13,6 +13,8 @@ class Program
         using (var window = new RenderWindow(
                    new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Platformer"))
         {
+            Scene scene = new Scene();
+            scene.Load("level0");
             window.Closed += (o, e) => window.Close();
             Clock clock = new Clock();
             while (window.IsOpen)
