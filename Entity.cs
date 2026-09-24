@@ -3,7 +3,7 @@ using SFML.System;
 
 namespace PersonalPlatformer;
 
-public class Entity : Scene
+public class Entity
 {
     private readonly string textureName;
     protected readonly Sprite sprite;

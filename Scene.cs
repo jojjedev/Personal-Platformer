@@ -80,7 +80,7 @@ public class Scene
                     case "d":
                         Door door = new Door();
                         door.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
-                        nextScene = words[3];
+                        door.NextRoom = words[3];
                         Spawn(door);
                         break;
                     case "k":
@@ -106,7 +106,7 @@ public class Scene
         currentScene = nextScene;
         nextScene = null;
     }
-    public void Spawn(Entity entity)
+    private void Spawn(Entity entity)
     {
         entities.Add(entity);
         entity.Create(this);
@@ -123,6 +123,31 @@ public class Scene
         textures.Add(name,texture);
         return texture;
     }
+
+    public bool FindByType<T>(out T found) where T : Entity
+    {
+        foreach (Entity entity in entities)
+        {
+            if (!entity.Dead && entity is T typed)
+            {
+                found = typed;
+                return true;
+            }
+        }
+
+        found = default(T);
+        return false;
+    }
+
+    public void SetScenePositon(Entity entity)
+    {
+        if (entity.Position.X - Program.SCREEN_WIDTH / 4 < 0)
+        {
+            scenePosition = new Vector2f(Program.SCREEN_WIDTH / 4, entity.Position.Y);
+        }
+        else scenePosition = entity.Position;
+    }
+    
     public void UpdateAll(float dt)
     {
         HandleSceneChange();
@@ -130,8 +155,6 @@ public class Scene
                                                   // man inte att den nya ska köra sin update i samma frame som den skapades, utan vänta till nästa.
         {
             Entity entity = entities[i];
-            if (entity is Hero) scenePosition = entity.Position;
-
             entity.Update(this, dt);
         }
 
