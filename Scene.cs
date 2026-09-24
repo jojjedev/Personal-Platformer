@@ -141,11 +141,26 @@ public class Scene
 
     public void SetScenePositon(Entity entity)
     {
-        if (entity.Position.X - Program.SCREEN_WIDTH / 4 < 0)
+        float posX = entity.Position.X;
+        float posY = entity.Position.Y;
+        if (entity.Position.X - Program.SCREEN_WIDTH * 0.25f < 0)
         {
-            scenePosition = new Vector2f(Program.SCREEN_WIDTH / 4, entity.Position.Y);
+            posX = Program.SCREEN_WIDTH * 0.25f;
         }
-        else scenePosition = entity.Position;
+        if (entity.Position.X + Program.SCREEN_WIDTH * 0.25f > Program.SCREEN_WIDTH)
+        {
+            posX = Program.SCREEN_WIDTH * 0.75f;
+        }
+        if (entity.Position.Y + Program.SCREEN_HEIGHT * 0.25f > Program.SCREEN_HEIGHT)
+        {
+            posY = Program.SCREEN_HEIGHT * 0.75f;
+        }
+        if (entity.Position.Y - Program.SCREEN_HEIGHT * 0.25f < 0)
+        {
+            posY = Program.SCREEN_HEIGHT * 0.25f;
+        }
+        
+        scenePosition = new Vector2f(posX, posY);
     }
     
     public void UpdateAll(float dt)

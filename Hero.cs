@@ -8,8 +8,8 @@ namespace PersonalPlatformer;
 public class Hero : Entity // TODO: Fixa running animation och lås animering när man faller med bool.
 {
     private bool faceRight = false;
-    private const float jumpForce = 250.0f;
-    private const float walkSpeed = 100.0f;
+    private const float jumpForce = 300.0f;
+    private const float walkSpeed = 150.0f;
     private const float gravityForce = 500.0f;
     private float verticalSpeed;
     private bool isGrounded;
@@ -27,7 +27,7 @@ public class Hero : Entity // TODO: Fixa running animation och lås animering n�
         {
             var bounds = base.Bounds;
             bounds.Left += 3;
-            bounds.Width += 7;
+            bounds.Width -= 8;
             bounds.Top += 3;
             bounds.Height -= 3;
             return bounds;
@@ -38,7 +38,7 @@ public class Hero : Entity // TODO: Fixa running animation och lås animering n�
         return sprite.Position.X < 0 ||
                   sprite.Position.Y < 0 ||
                   sprite.Position.X >= Program.SCREEN_WIDTH ||
-                  sprite.Position.Y>= Program.SCREEN_WIDTH;
+                  sprite.Position.Y>= Program.SCREEN_HEIGHT;
     }
 
     private void HeroMove(Scene scene, float dt)

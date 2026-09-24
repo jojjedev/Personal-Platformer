@@ -5,11 +5,15 @@ namespace PersonalPlatformer;
 
 class Program
 {
-    public const int SCREEN_WIDTH = 600;
-    private const int SCREEN_HEIGHT = 400;
+    public const int SCREEN_WIDTH = 800;
+    public const int SCREEN_HEIGHT = 600;
     
     static void Main(string[] args)
     {
+        for (int i = 0; i <= 42; i++)
+        {
+            Console.WriteLine($"p {(i * 18)} 590");
+        }
         using (RenderWindow window = new RenderWindow(
                    new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Platformer"))
         {  
