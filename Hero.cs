@@ -24,13 +24,13 @@ public class Hero : Entity
     {
         if (Keyboard.IsKeyPressed(Keyboard.Key.A) || Keyboard.IsKeyPressed(Keyboard.Key.Left))
         {
-            scene.TryMove(this, new Vector2f(-100 * dt, 0));
+            scene.TryMove(this, new Vector2f(-walkSpeed * dt, 0));
             faceRight = false;
         }
 
         if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
         {
-            scene.TryMove(this, new Vector2f(100 * dt, 0));
+            scene.TryMove(this, new Vector2f(walkSpeed * dt, 0));
             faceRight = true;
         }
 
@@ -58,7 +58,6 @@ public class Hero : Entity
         }
         verticalSpeed += gravityForce * dt;
         if (verticalSpeed > 500.0f) verticalSpeed = 500.0f;
-
     }
 
     public override void Render(RenderTarget target)

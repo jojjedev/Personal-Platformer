@@ -12,18 +12,19 @@ class Program
     {
         using (var window = new RenderWindow(
                    new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Platformer"))
-        {
+        {  
             Scene scene = new Scene();
             scene.Load("level0");
-            window.SetView(new View(
-                new Vector2f(300,200), // Byt ut mot Hero.center
-                new Vector2f(600,400)));
+            
             
             
             window.Closed += (o, e) => window.Close();
             Clock clock = new Clock();
             while (window.IsOpen)
             {
+                window.SetView(new View(
+                    scene.scenePosition,
+                    new Vector2f(600,400)));
                 float dt = clock.Restart().AsSeconds();
                 window.DispatchEvents();
                 //TODO UPDATES

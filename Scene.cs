@@ -11,7 +11,7 @@ public class Scene
     private List<Entity> entities;
     private string nextScene;
     private string currentScene;
-
+    public Vector2f scenePosition = new Vector2f(300, 200);
     public Scene()
     {
         textures = new Dictionary<string, Texture>();
@@ -130,6 +130,8 @@ public class Scene
                                                   // man inte att den nya ska köra sin update i samma frame som den skapades, utan vänta till nästa.
         {
             Entity entity = entities[i];
+            if (entity is Hero) scenePosition = entity.Position;
+
             entity.Update(this, dt);
         }
 
