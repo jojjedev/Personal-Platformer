@@ -5,9 +5,9 @@ namespace PersonalPlatformer;
 
 class Program
 {
-    private const int SCREEN_HEIGHT = 800;
     private const int SCREEN_WIDTH = 1200;
-
+    private const int SCREEN_HEIGHT = 800;
+    
     static void Main(string[] args)
     {
         using (var window = new RenderWindow(
@@ -15,6 +15,11 @@ class Program
         {
             Scene scene = new Scene();
             scene.Load("level0");
+            window.SetView(new View(
+                new Vector2f(300,200), // Byt ut mot Hero.center
+                new Vector2f(600,400)));
+            
+            
             window.Closed += (o, e) => window.Close();
             Clock clock = new Clock();
             while (window.IsOpen)
@@ -22,8 +27,10 @@ class Program
                 float dt = clock.Restart().AsSeconds();
                 window.DispatchEvents();
                 //TODO UPDATES
+                scene.UpdateAll(dt);
                 window.Clear();
                 // TODO DRAWING
+                scene.RenderAll(window);
                 window.Display();
             }
         }
