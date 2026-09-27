@@ -3,7 +3,11 @@ d 198 570 gpt
 k 252 573
 
 # Hero
-h 27 550
+h 72 450
+
+# Breakable platforms
+b 72 510
+b 90 510
 
 # Platforms
 p 0 590

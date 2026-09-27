@@ -36,6 +36,7 @@ public class Entity
     {
         sprite.Texture = scene.LoadTexture(textureName);
     }
+    public virtual void CheckHit(Scene scene){}
     public virtual bool Solid => false;
     public virtual void Update(Scene scene, float dt){}
 

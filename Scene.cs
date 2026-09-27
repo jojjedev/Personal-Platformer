@@ -32,6 +32,7 @@ public class Scene
             FloatRect BoundsB = other.Bounds;
             if (Collision.RectangleRectangle(BoundsA, BoundsB, out Collision.Hit hit))
             {
+                other.CheckHit(this);
                 entity.Position += hit.Normal * hit.Overlap;
                 i = -1;
                 collided = true;
@@ -92,6 +93,11 @@ public class Scene
                         Platform platform = new Platform();
                         platform.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
                         Spawn(platform);
+                        break;
+                    case "b":
+                        Breakable breakable = new Breakable();
+                        breakable.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
+                        Spawn(breakable);
                         break;
                     case "h":
                         Hero hero = new Hero();
