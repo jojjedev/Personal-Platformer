@@ -5,6 +5,9 @@ k 252 573
 # Hero
 h 72 450
 
+# Coins
+c 90 501
+
 # Breakable platforms
 b 72 510
 b 90 510

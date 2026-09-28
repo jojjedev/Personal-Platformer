@@ -9,6 +9,7 @@ public class Scene
 {
     private Dictionary<string, Texture> textures;
     private List<Entity> entities;
+    public EventBus EventBus;
     private string nextScene;
     private string currentScene;
     public Vector2f scenePosition = new Vector2f(300, 200);
@@ -16,6 +17,7 @@ public class Scene
     {
         textures = new Dictionary<string, Texture>();
         entities = new List<Entity>();
+        EventBus = new EventBus();
     }
 
     public bool TryMove(Entity entity, Vector2f movement)
@@ -98,6 +100,11 @@ public class Scene
                         Breakable breakable = new Breakable();
                         breakable.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
                         Spawn(breakable);
+                        break;
+                    case "c":
+                        Coin coin = new Coin();
+                        coin.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
+                        Spawn(coin);
                         break;
                     case "h":
                         Hero hero = new Hero();

@@ -122,7 +122,6 @@ public class Hero : Entity // TODO: Fixa running animation och l√•s animering n√
         HeroMove(scene, dt);
         scene.SetScenePositon(this);
         timer += dt;
-        Console.WriteLine(verticalSpeed);
     }
 
     public override void Render(RenderTarget target)
