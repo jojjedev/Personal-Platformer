@@ -6,7 +6,8 @@ k 252 573
 h 72 450
 
 # Coins
-c 90 501
+c 90 492
+c 108 492
 
 # Breakable platforms
 b 72 510

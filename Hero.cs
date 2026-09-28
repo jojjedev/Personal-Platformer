@@ -21,7 +21,7 @@ public class Hero : Entity // TODO: Fixa running animation och l√•s animering n√
         sprite.TextureRect = new IntRect(0, 0, 24, 24);
         sprite.Origin = new Vector2f(12, 12);
     }
-
+    
     public override FloatRect Bounds
     {
         get

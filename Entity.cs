@@ -8,7 +8,7 @@ public class Entity
     private readonly string textureName;
     protected readonly Sprite sprite;
     public bool Dead;
-
+    
     protected Entity(string textureName)
     {
         this.textureName = textureName;

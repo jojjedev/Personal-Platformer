@@ -10,10 +10,7 @@ class Program
     
     static void Main(string[] args)
     {
-        for (int i = 0; i <= 42; i++)
-        {
-            Console.WriteLine($"p {(i * 18)} 590");
-        }
+        
         using (RenderWindow window = new RenderWindow(
                    new VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Platformer"))
         {  
@@ -33,6 +30,7 @@ class Program
                 window.Clear();
                 // TODO DRAWING
                 scene.RenderAll(window);
+                scene.RenderUI(window);
                 window.Display();
             }
         }

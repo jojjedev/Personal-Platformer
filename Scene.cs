@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json.Serialization.Metadata;
 using Platformer;
 using SFML.Graphics;
 using SFML.System;
@@ -9,15 +10,17 @@ public class Scene
 {
     private Dictionary<string, Texture> textures;
     private List<Entity> entities;
-    public EventBus EventBus;
     private string nextScene;
     private string currentScene;
     public Vector2f scenePosition = new Vector2f(300, 200);
+    private GUI gui;
+    private CoinHandler coinHandler;
     public Scene()
     {
         textures = new Dictionary<string, Texture>();
         entities = new List<Entity>();
-        EventBus = new EventBus();
+        coinHandler = new CoinHandler();
+        gui = new GUI(this, coinHandler);
     }
 
     public bool TryMove(Entity entity, Vector2f movement)
@@ -60,6 +63,7 @@ public class Scene
         if (nextScene == null) return;
         entities.Clear();
         Spawn(new Background());
+
 
         string file = $"assets/{nextScene}.txt";
         Console.WriteLine($"Loading scene '{file}'");
@@ -105,6 +109,7 @@ public class Scene
                         Coin coin = new Coin();
                         coin.Position = new Vector2f(float.Parse(words[1]), float.Parse(words[2]));
                         Spawn(coin);
+                        coinHandler.SubscribeCoin(coin);
                         break;
                     case "h":
                         Hero hero = new Hero();
@@ -192,6 +197,7 @@ public class Scene
             if (entity.Dead) entities.RemoveAt(i);
             else i++;
         }
+        gui.Update(this);
     }
 
     public void RenderAll(RenderTarget target)
@@ -200,5 +206,10 @@ public class Scene
         {
             entity.Render(target);
         }
+    }
+
+    public void RenderUI(RenderTarget target)
+    {
+        gui.Render(target);
     }
 }
